@@ -12,7 +12,7 @@ locals {
 
 resource "azuredevops_build_definition" "release" {
   project_id      = var.project_id
-  name            = "${var.repository.name}.deploy"
+  name            = "${var.repository.name}.release"
   path            = "\\${var.repository.name}"
   agent_pool_name = var.agent_pool_name
 
