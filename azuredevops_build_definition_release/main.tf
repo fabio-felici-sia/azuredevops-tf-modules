@@ -91,23 +91,23 @@ resource "time_sleep" "wait" {
 
 # github_service_connection_id serviceendpoint authorization
 resource "azuredevops_resource_authorization" "github_service_connection_authorization" {
-  depends_on = [azuredevops_build_definition.pipeline, time_sleep.wait]
+  depends_on = [azuredevops_build_definition.release, time_sleep.wait]
 
   project_id    = var.project_id
   resource_id   = var.github_service_connection_id
-  definition_id = azuredevops_build_definition.pipeline.id
+  definition_id = azuredevops_build_definition.release.id
   authorized    = true
   type          = "endpoint"
 }
 
 # others service_connection_ids serviceendpoint authorization
 resource "azuredevops_resource_authorization" "service_connection_ids_authorization" {
-  depends_on = [azuredevops_build_definition.pipeline, time_sleep.wait]
+  depends_on = [azuredevops_build_definition.release, time_sleep.wait]
   count      = var.service_connection_ids_authorization == null ? 0 : length(var.service_connection_ids_authorization)
 
   project_id    = var.project_id
   resource_id   = var.service_connection_ids_authorization[count.index]
-  definition_id = azuredevops_build_definition.pipeline.id
+  definition_id = azuredevops_build_definition.release.id
   authorized    = true
   type          = "endpoint"
 }
