@@ -20,7 +20,7 @@ resource "azuredevops_build_definition" "release" {
     repo_type             = "GitHub"
     repo_id               = "${var.repository.organization}/${var.repository.name}"
     branch_name           = var.repository.branch_name
-    yml_path              = "${var.repository.pipelines_path}/${local.yml_prefix_name}deploy-pipelines.yml"
+    yml_path              = "${var.repository.pipelines_path}/${local.yml_prefix_name}release-pipelines.yml"
     service_connection_id = var.github_service_connection_id
   }
 
